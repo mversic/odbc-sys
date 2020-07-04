@@ -36,3 +36,43 @@ impl From<OdbcVersion> for *mut c_void {
         source as i32 as *mut c_void
     }
 }
+
+/// Connection attributes for `SQLSetConnectAttr`
+#[repr(i32)]
+#[allow(non_camel_case_types)]
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+pub enum SqlConnectionAttribute {
+    SQL_ATTR_ASYNC_ENABLE = 4,
+    SQL_ATTR_ACCESS_MODE = 101,
+    SQL_ATTR_AUTOCOMMIT = 102,
+    SQL_ATTR_LOGIN_TIMEOUT = 103,
+    SQL_ATTR_TRACE = 104,
+    SQL_ATTR_TRACEFILE = 105,
+    SQL_ATTR_TRANSLATE_LIB = 106,
+    SQL_ATTR_TRANSLATE_OPTION = 107,
+    SQL_ATTR_TXN_ISOLATION = 108,
+    SQL_ATTR_CURRENT_CATALOG = 109,
+    SQL_ATTR_ODBC_CURSORS = 110,
+    SQL_ATTR_QUIET_MODE = 111,
+    SQL_ATTR_PACKET_SIZE = 112,
+    SQL_ATTR_CONNECTION_TIMEOUT = 113,
+    SQL_ATTR_DISCONNECT_BEHAVIOR = 114,
+    #[cfg(feature = "odbc_version_3_80")]
+    SQL_ATTR_ASYNC_DBC_FUNCTIONS_ENABLE = 117,
+
+//    #[cfg(feature = "odbc_version_3_80")]
+//    SQL_ATTR_ASYNC_DBC_PCALLBACK = x,
+//    #[cfg(feature = "odbc_version_3_80")]
+//    SQL_ATTR_ASYNC_DBC_PCONTEXT = y,
+//    #[cfg(feature = "odbc_version_3_80")]
+//    SQL_ATTR_DBC_INFO_TOKEN = z,
+
+    SQL_ATTR_ASYNC_DBC_EVENT = 119,
+    SQL_ATTR_ENLIST_IN_DTC = 1207,
+    SQL_ATTR_ENLIST_IN_XA = 1208,
+    SQL_ATTR_CONNECTION_DEAD = 1209,
+    SQL_ATTR_AUTO_IPD = 10001,
+    SQL_ATTR_METADATA_ID = 10014,
+}
+pub use self::SqlConnectionAttribute::*;
+
